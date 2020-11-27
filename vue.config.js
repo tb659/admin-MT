@@ -48,12 +48,11 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    externals: {
+      AMap: 'AMap' // 高德地图配置
+    },
   },
-  externals: {
-    AMap: 'AMap' // 高德地图配置
-  }
-},
   chainWebpack: config => {
     // it can improve the speed of the first screen, it is recommended to turn on preload
     config.plugin('preload').tap(() => [
