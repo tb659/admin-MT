@@ -1,4 +1,5 @@
 import { asyncRoutes, constantRoutes } from '@/router'
+console.log(asyncRoutes, constantRoutes)
 debugger
 /**
  * Use meta.role to determine if the current user has permission
