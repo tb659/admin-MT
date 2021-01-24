@@ -1,24 +1,7 @@
-
-const prodPlugins = []
-if (process.env.NODE_ENV === 'production') {
-  prodPlugins.push('transform-remove-console')
-}
-
 module.exports = {
   presets: [
+    // https://github.com/vuejs/vue-cli/tree/master/packages/@vue/babel-preset-app
     '@vue/cli-plugin-babel/preset'
-  ],
-  plugins: [
-    // [
-    //   'component', // babel-plugin-component 按需加载
-    //   {
-    //     libraryName: 'element-ui', 
-    //     styleLibraryName: 'theme-chalk'
-    //   }
-    // ],
-    // 发布产品时候的插件数组
-    ...prodPlugins,
-    '@babel/plugin-syntax-dynamic-import'
   ],
   'env': {
     'development': {

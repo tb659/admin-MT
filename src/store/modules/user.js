@@ -1,131 +1,184 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import router, { resetRouter } from '@/router'
 
-const state = {
-  token: getToken(),
-  name: '',
-  avatar: '',
-  introduction: '',
-  roles: []
-}
+const user = {
+  state: {
+    token: getToken(),
+    name: '',
+    avatar: '',
+    roles: [],
+    permissions: []
+  },
 
-const mutations = {
-  SET_TOKEN: (state, token) => {
-    state.token = token
+  mutations: {
+    SET_TOKEN: (state, token) => {
+      state.token = token
+    },
+    SET_NAME: (state, name) => {
+      state.name = name
+    },
+    SET_AVATAR: (state, avatar) => {
+      state.avatar = avatar
+    },
+    SET_ROLES: (state, roles) => {
+      state.roles = roles
+    },
+    SET_PERMISSIONS: (state, permissions) => {
+      state.permissions = permissions
+    }
   },
-  SET_INTRODUCTION: (state, introduction) => {
-    state.introduction = introduction
-  },
-  SET_NAME: (state, name) => {
-    state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
-  },
-  SET_ROLES: (state, roles) => {
-    state.roles = roles
-  }
-}
 
-const actions = {
-  // user login
-  login({ commit }, userInfo) {
-    const { username, password } = userInfo
-    return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+  actions: {
+    // 登录
+    Login({ commit }, userInfo) {
+      const username = userInfo.username.trim()
+      const password = userInfo.password
+      const code = userInfo.code
+      const uuid = userInfo.uuid
+      return new Promise((resolve, reject) => {
+        // login(username, password, code, uuid)
+        // .then(res => {
+        console.log('---------------------------------------------登录')
+        let res = {
+          msg: '操作成功',
+          code: 200,
+          token:
+            'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjVhOWVmZGI4LTAyODctNDA1OS05M2M3LWNlNDVmOGZkYWY5MyJ9.W1rw8kR02n9obI6P7Gz3DHX_x3qb6VZatk6sge69LUWHZM1XlUZNn0-zBaB-TF6qQIQTw78NdDZsxyszOJWBRQ'
+        }
+        setToken(res.token)
+        commit('SET_TOKEN', res.token)
         resolve()
       }).catch(error => {
         reject(error)
       })
-    })
-  },
+      // })
+    },
 
-  // get user info
-  getInfo({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
-
-        if (!data) {
-          reject('Verification failed, please Login again.')
+    // 获取用户信息
+    GetInfo({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        // getInfo(state.token).then(res => {
+        console.log('----------------------------获取用户信息接口')
+        let res = {
+          msg: '操作成功',
+          code: 200,
+          permissions: ['*:*:*'],
+          roles: ['admin'],
+          user: {
+            searchValue: null,
+            createBy: 'admin',
+            createTime: '2021-01-21 23:10:54',
+            updateBy: null,
+            updateTime: null,
+            remark: '管理员',
+            params: {},
+            userId: 1,
+            deptId: 103,
+            userName: 'admin',
+            nickName: '若依',
+            email: 'ry@163.com',
+            phonenumber: '15888888888',
+            sex: '1',
+            avatar: '',
+            salt: null,
+            status: '0',
+            delFlag: '0',
+            loginIp: '127.0.0.1',
+            loginDate: '2021-01-21T23:10:54.000+0800',
+            dept: {
+              searchValue: null,
+              createBy: null,
+              createTime: null,
+              updateBy: null,
+              updateTime: null,
+              remark: null,
+              params: {},
+              deptId: 103,
+              parentId: 101,
+              ancestors: null,
+              deptName: '研发部门',
+              orderNum: '1',
+              leader: '若依',
+              phone: null,
+              email: null,
+              status: '0',
+              delFlag: null,
+              parentName: null,
+              children: []
+            },
+            roles: [
+              {
+                searchValue: null,
+                createBy: null,
+                createTime: null,
+                updateBy: null,
+                updateTime: null,
+                remark: null,
+                params: {},
+                roleId: 1,
+                roleName: '超级管理员',
+                roleKey: 'admin',
+                roleSort: '1',
+                dataScope: '1',
+                menuCheckStrictly: false,
+                deptCheckStrictly: false,
+                status: '0',
+                delFlag: null,
+                flag: false,
+                menuIds: null,
+                deptIds: null,
+                admin: true
+              }
+            ],
+            roleIds: null,
+            postIds: null,
+            admin: true
+          }
         }
-
-        const { roles, name, avatar, introduction } = data
-
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
+        const user = res.user
+        const avatar = user.avatar == '' ? require('@/assets/images/profile.jpg') : process.env.VUE_APP_BASE_API + user.avatar
+        if (res.roles && res.roles.length > 0) {
+          // 验证返回的roles是否是一个非空数组
+          commit('SET_ROLES', res.roles)
+          commit('SET_PERMISSIONS', res.permissions)
+        } else {
+          commit('SET_ROLES', ['ROLE_DEFAULT'])
         }
-
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
+        commit('SET_NAME', user.userName)
         commit('SET_AVATAR', avatar)
-        commit('SET_INTRODUCTION', introduction)
-        resolve(data)
+        resolve(res)
       }).catch(error => {
         reject(error)
       })
-    })
-  },
+      // })
+    },
 
-  // user logout
-  logout({ commit, state, dispatch }) {
-    return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
+    // 退出系统
+    LogOut({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        // logout(state.token)
+        //   .then(() => {
+            commit('SET_TOKEN', '')
+            commit('SET_ROLES', [])
+            commit('SET_PERMISSIONS', [])
+            removeToken()
+            resolve()
+          })
+          .catch(error => {
+            reject(error)
+          })
+      // })
+    },
+
+    // 前端 登出
+    FedLogOut({ commit }) {
+      return new Promise(resolve => {
         commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
         removeToken()
-        resetRouter()
-
-        // reset visited views and cached views
-        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-        dispatch('tagsView/delAllViews', null, { root: true })
-
         resolve()
-      }).catch(error => {
-        reject(error)
       })
-    })
-  },
-
-  // remove token
-  resetToken({ commit }) {
-    return new Promise(resolve => {
-      commit('SET_TOKEN', '')
-      commit('SET_ROLES', [])
-      removeToken()
-      resolve()
-    })
-  },
-
-  // dynamically modify permissions
-  async changeRoles({ commit, dispatch }, role) {
-    const token = role + '-token'
-
-    commit('SET_TOKEN', token)
-    setToken(token)
-
-    const { roles } = await dispatch('getInfo')
-
-    resetRouter()
-
-    // generate accessible routes map based on roles
-    const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
-    // dynamically add accessible routes
-    router.addRoutes(accessRoutes)
-
-    // reset visited views and cached views
-    dispatch('tagsView/delAllViews', null, { root: true })
+    }
   }
 }
 
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
-}
+export default user

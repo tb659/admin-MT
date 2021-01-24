@@ -42,7 +42,6 @@ const mutations = {
     if (index > -1) {
       state.cachedViews = state.cachedViews.slice(index, index + 1)
     } else {
-      // if index = -1, there is no cached tags
       state.cachedViews = []
     }
   },

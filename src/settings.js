@@ -1,29 +1,30 @@
 module.exports = {
-  title: 'Admin MT',
+  title: 'admin-MT',
 
   /**
-   * @type {boolean} true | false
-   * @description Whether show the settings right-panel
+   * 侧边栏主题 深色主题theme-dark，浅色主题theme-light
    */
-  showSettings: true,
+  sideTheme: 'theme-dark',
 
   /**
-   * @type {boolean} true | false
-   * @description Whether need tagsView
+   * 是否系统布局配置
+   */
+  showSettings: false,
+
+  /**
+   * 是否显示 tagsView
    */
   tagsView: true,
 
   /**
-   * @type {boolean} true | false
-   * @description Whether fix the header
+   * 是否固定头部
    */
   fixedHeader: false,
 
   /**
-   * @type {boolean} true | false
-   * @description Whether show the logo in sidebar
+   * 是否显示logo
    */
-  sidebarLogo: false,
+  sidebarLogo: true,
 
   /**
    * @type {string | array} 'production' | ['production', 'development']
@@ -31,5 +32,5 @@ module.exports = {
    * The default is only used in the production env
    * If you want to also use it in dev, you can pass ['production', 'development']
    */
-  errorLog: 'production'
+  errorLog: 'production',
 }
