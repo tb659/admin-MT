@@ -83,7 +83,13 @@ export const constantRoutes = [
 ]
 
 export default new Router({
+  // 部署到子路径
+  // 1、修改vue.config.js中的publicPath属性  publicPath: process.env.NODE_ENV === "production" ? "/admin/" : "/admin/",
+  // 2、修改router/ index.js，添加一行base属性  base: "/admin"
+  // 3、修改layout/components/Navbar.vue中的location.href   location.href = this.$router.options.base + '/index';
+  // 4、修改nginx配置 
+  // base: '/admin',
   mode: 'history', // 去掉url中的#
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
-})
+});

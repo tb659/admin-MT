@@ -223,7 +223,7 @@ export default {
       // 部门名称
       deptName: undefined,
       // 默认密码
-      initPassword: undefined,
+      initPassword: '123456',
       // 日期范围
       dateRange: [],
       // 状态数据字典
@@ -303,6 +303,7 @@ export default {
     }
   },
   created() {
+    console.log(process.env.VUE_APP_BASE_API)
     this.getList()
     // this.getDicts("sys_normal_disable").then(response => {
     //   this.statusOptions = response.data;
@@ -310,9 +311,6 @@ export default {
     // this.getDicts("sys_user_sex").then(response => {
     //   this.sexOptions = response.data;
     // });
-    // this.getConfigKey('sys.user.initPassword').then(response => {
-    //   this.initPassword = response.msg
-    // })
   },
   methods: {
     /** 查询用户列表 */

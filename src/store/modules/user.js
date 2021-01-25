@@ -36,22 +36,15 @@ const user = {
       const code = userInfo.code
       const uuid = userInfo.uuid
       return new Promise((resolve, reject) => {
-        // login(username, password, code, uuid)
-        // .then(res => {
-        console.log('---------------------------------------------登录')
-        let res = {
-          msg: '操作成功',
-          code: 200,
-          token:
-            'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjVhOWVmZGI4LTAyODctNDA1OS05M2M3LWNlNDVmOGZkYWY5MyJ9.W1rw8kR02n9obI6P7Gz3DHX_x3qb6VZatk6sge69LUWHZM1XlUZNn0-zBaB-TF6qQIQTw78NdDZsxyszOJWBRQ'
-        }
+        login(username, password, code, uuid)
+        .then(res => {
         setToken(res.token)
         commit('SET_TOKEN', res.token)
         resolve()
       }).catch(error => {
         reject(error)
       })
-      // })
+      })
     },
 
     // 获取用户信息

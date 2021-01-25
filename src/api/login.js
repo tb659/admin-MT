@@ -11,8 +11,14 @@ export function login(username, password, code, uuid) {
   return request({
     url: '/login',
     method: 'post',
-    data: data
-  })
+    data: data,
+    // headers: {
+    //   isToken: false
+    //   // 可以自定义 Authorization
+    //   // 'Authorization': 'Basic d2ViOg=='
+    // },
+    // baseURL: process.env.BASE_API // 覆盖 不同的baseURL
+  });
 }
 
 // 获取用户详细信息
