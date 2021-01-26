@@ -23,7 +23,111 @@ const permission = {
     GenerateRoutes({ commit }) {
       return new Promise(resolve => {
         // 向后端请求路由数据
-        getRouters().then(res => {
+        // getRouters().then(res => {
+        console.log('----------------------------------------向后端请求路由数据')
+        let res = {
+          msg: '操作成功',
+          code: 200,
+          data: [
+            {
+              name: 'DataFill',
+              path: '/dataFill',
+              hidden: false,
+              redirect: 'noRedirect',
+              component: 'Layout',
+              alwaysShow: true,
+              meta: { title: '数据填报', icon: 'date', noCache: false },
+              children: [
+                {
+                  name: 'MyTest',
+                  path: 'myTest',
+                  hidden: false,
+                  component: 'dataFill/myTest/index',
+                  meta: { title: '我的任务', icon: 'user', noCache: false }
+                }
+              ]
+            },
+            {
+              name: 'TeskManager',
+              path: '/teskManager',
+              hidden: false,
+              redirect: 'noRedirect',
+              component: 'Layout',
+              alwaysShow: true,
+              meta: { title: '任务管理', icon: 'date', noCache: false },
+              children: [
+                {
+                  name: 'SponsorTesk',
+                  path: 'sponsorTesk',
+                  hidden: false,
+                  component: 'teskManager/sponsorTesk/index',
+                  meta: { title: '发起任务', icon: 'user', noCache: false }
+                },
+                {
+                  name: 'CollectAudit',
+                  path: 'collectAudit',
+                  hidden: false,
+                  component: 'teskManager/collectAudit/index',
+                  meta: { title: '汇总审核', icon: 'user', noCache: false }
+                }
+              ]
+            },
+            {
+              name: 'ReportAudit',
+              path: '/reportAudit',
+              hidden: false,
+              redirect: 'noRedirect',
+              component: 'Layout',
+              alwaysShow: true,
+              meta: { title: '提报审核', icon: 'date', noCache: false },
+              children: [
+                {
+                  name: 'Index',
+                  path: 'index',
+                  hidden: false,
+                  component: 'reportAudit/reportAudit/index',
+                  meta: { title: '提报审核', icon: 'user', noCache: false }
+                }
+              ]
+            },
+            {
+              name: 'System',
+              path: '/system',
+              hidden: false,
+              redirect: 'noRedirect',
+              component: 'Layout',
+              alwaysShow: true,
+              meta: { title: '系统管理', icon: 'system', noCache: false },
+              children: [
+                {
+                  name: 'User',
+                  path: 'user',
+                  hidden: false,
+                  component: 'system/user/index',
+                  meta: { title: '用户管理', icon: 'user', noCache: false }
+                }
+              ]
+            },
+            {
+              name: 'StatisticalStatement',
+              path: '/statisticalStatement',
+              hidden: false,
+              redirect: 'noRedirect',
+              component: 'Layout',
+              alwaysShow: true,
+              meta: { title: '统计报表', icon: 'date', noCache: false },
+              children: [
+                {
+                  name: 'Index',
+                  path: 'index',
+                  hidden: false,
+                  component: 'statisticalStatement/statisticalStatement/index',
+                  meta: { title: '统计报表', icon: 'user', noCache: false }
+                }
+              ]
+            }
+          ]
+        }
         const sdata = JSON.parse(JSON.stringify(res.data))
         const rdata = JSON.parse(JSON.stringify(res.data))
         const sidebarRoutes = filterAsyncRouter(sdata)
@@ -32,7 +136,7 @@ const permission = {
         commit('SET_ROUTES', rewriteRoutes)
         commit('SET_SIDEBAR_ROUTERS', sidebarRoutes)
         resolve(rewriteRoutes)
-        })
+        // })
       })
     }
   }

@@ -11,15 +11,15 @@
     <container-header v-if="!fillTeskVisible" :left="24" :right="0">
       <el-form slot="left" :model="queryParams" ref="queryForm" :inline="true" label-width="68px">
         <el-form-item label="任务名称" prop="userName">
-          <el-input v-model="queryParams.userName" placeholder="请输入任务名称" clearable size="small" class="w240 mr20" @keyup.enter.native="handleQuery" />
+          <el-input v-model="queryParams.userName" placeholder="请输入任务名称" clearable  class="w240 mr20" @keyup.enter.native="handleQuery" />
         </el-form-item>
         <el-form-item label="任务状态" prop="teskStatus">
-          <el-select v-model="queryParams.teskStatus" placeholder="请选择任务状态" clearable size="small" :style="{ width: '100%' }">
+          <el-select v-model="queryParams.teskStatus" placeholder="请选择任务状态" clearable  :style="{ width: '100%' }">
             <el-option v-for="(item, index) in statusData" :key="index" :label="item.label" :value="item.value" :disabled="item.disabled"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" icon="el-icon-search" size="small" @click="handleQuery">{{ $t('query') }}</el-button>
+          <el-button type="primary" icon="el-icon-search"  @click="handleQuery">{{ $t('query') }}</el-button>
         </el-form-item>
       </el-form>
     </container-header>
@@ -43,7 +43,7 @@
             <el-table-column label="下发人" prop="issuedName" width="160" />
             <el-table-column label="任务状态" key="teskStatus" width="140">
               <template slot-scope="scope">
-                <el-button size="mini" type="text">
+                <el-button  type="text">
                   <span v-if="scope.row.teskStatus === 1">待上报</span>
                   <span v-if="scope.row.teskStatus === 2">已上报</span>
                   <span v-if="scope.row.teskStatus === 3">已保存</span>
@@ -59,13 +59,13 @@
                 <el-button
                   v-if="scope.row.teskStatus !== 6 && scope.row.teskStatus !== 1"
                   plain
-                  size="mini"
+                  
                   :type="'primary'"
                   @click="handleTesk(scope.row)"
                   v-hasPermi="['system:user:edit']"
                   >查看</el-button
                 >
-                <el-button plain size="mini" :type="scope.row.teskStatus === 6 ? 'danger' : 'primary'" @click="handleTesk(scope.row)" v-hasPermi="['system:user:edit']">
+                <el-button plain  :type="scope.row.teskStatus === 6 ? 'danger' : 'primary'" @click="handleTesk(scope.row)" v-hasPermi="['system:user:edit']">
                   <span v-if="scope.row.teskStatus === 1">审核</span>
                   <span v-if="scope.row.teskStatus === 5">上报</span>
                   <span v-if="scope.row.teskStatus === 6">处理</span>
@@ -86,22 +86,22 @@
         <el-form slot="left" :model="queryParams" ref="queryForm" :inline="true" label-width="68px">
           <el-form-item label="问题指标" prop="info">
             <el-badge value="x" class="item">
-              <el-button size="mini" plain>所监管企业资产总额-工商类（亿元）</el-button>
+              <el-button  plain>所监管企业资产总额-工商类（亿元）</el-button>
             </el-badge>
             <el-badge value="x" class="item">
-              <el-button size="mini" plain>所监管企业资产总额-文化类（亿元）</el-button>
+              <el-button  plain>所监管企业资产总额-文化类（亿元）</el-button>
             </el-badge>
             <el-badge value="x" class="item">
-              <el-button size="mini" plain>省级各类国有企业资产总额（亿元） </el-button>
+              <el-button  plain>省级各类国有企业资产总额（亿元） </el-button>
             </el-badge>
             <el-input rows="4" type="textarea" style="width: 100%" v-model="queryParams.info" placeholder="反馈描述" clearable />
           </el-form-item>
           <el-form-item> </el-form-item>
         </el-form>
         <div class="footerBtn">
-          <el-button type="primary" size="small"> 审核通过 </el-button>
-          <el-button type="primary" size="small"> 返回 </el-button>
-          <el-button type="primary" size="small"> 确认上报 </el-button>
+          <el-button type="primary" > 审核通过 </el-button>
+          <el-button type="primary" > 返回 </el-button>
+          <el-button type="primary" > 确认上报 </el-button>
         </div>
       </div>
     </fill-tesk>

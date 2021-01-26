@@ -2,24 +2,24 @@
  * @Author: tb659
  * @Date: 2021-01-23 14:07:12
  * @LastEditors: tb659
- * @LastEditTime: 2021-01-24 16:43:35
+ * @LastEditTime: 2021-01-26 23:45:30
  * @Description: 我的任务
- * @FilePath: \datacollectandsubmit\src\views\dataFill\myTest\index.vue
+ * @FilePath: \admin-MT\src\views\dataFill\myTest\index.vue
 -->
 <template>
   <div class="container">
     <container-header v-if="!fillTeskVisible" :left="24" :right="0">
       <el-form slot="left" :model="queryParams" ref="queryForm" :inline="true" label-width="68px">
         <el-form-item label="任务名称" prop="userName">
-          <el-input v-model="queryParams.userName" placeholder="请输入任务名称" clearable size="small" class="w240 mr20" @keyup.enter.native="handleQuery" />
+          <el-input v-model="queryParams.userName" placeholder="请输入任务名称" clearable class="w240 mr20" @keyup.enter.native="handleQuery" />
         </el-form-item>
         <el-form-item label="任务状态" prop="teskStatus">
-          <el-select v-model="queryParams.teskStatus" placeholder="请选择任务状态" clearable size="small" :style="{ width: '100%' }">
+          <el-select v-model="queryParams.teskStatus" placeholder="请选择任务状态" clearable  :style="{ width: '100%' }">
             <el-option v-for="(item, index) in statusData" :key="index" :label="item.label" :value="item.value" :disabled="item.disabled"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" icon="el-icon-search" size="small" @click="handleQuery">{{ $t('query') }}</el-button>
+          <el-button type="primary" icon="el-icon-search"  @click="handleQuery">{{ $t('query') }}</el-button>
         </el-form-item>
       </el-form>
     </container-header>
@@ -41,7 +41,7 @@
             <el-table-column label="指标总数" key="indicatorsTotel" prop="indicatorsTotel" width="140" />
             <el-table-column label="任务状态" key="teskStatus" width="140">
               <template slot-scope="scope">
-                <el-button size="mini" type="text">
+                <el-button  type="text">
                   <span v-if="scope.row.teskStatus === 1">待上报</span>
                   <span v-if="scope.row.teskStatus === 2">已上报</span>
                   <span v-if="scope.row.teskStatus === 3">已保存</span>
@@ -55,7 +55,7 @@
             <el-table-column label="下发时间" prop="issuedDate" width="160" />
             <el-table-column :label="$t('handle')" width="100">
               <template slot-scope="scope">
-                <el-button plain size="mini" :type="scope.row.teskStatus === 6 ? 'danger' : 'primary'" @click="handleTesk(scope.row)" v-hasPermi="['system:user:edit']">
+                <el-button plain  :type="scope.row.teskStatus === 6 ? 'danger' : 'primary'" @click="handleTesk(scope.row)" v-hasPermi="['system:user:edit']">
                   <span v-if="scope.row.teskStatus === 1">填报</span>
                   <span v-else-if="scope.row.teskStatus === 5">查看</span>
                   <span v-else-if="scope.row.teskStatus === 6">处理</span>
@@ -73,8 +73,8 @@
     <!-- 填报 -->
     <fill-tesk v-show="fillTeskVisible">
       <div class="footer">
-        <el-button size="mini" type="primary">保存</el-button>
-        <el-button size="mini" type="primary">提交</el-button>
+        <el-button  type="primary">保存</el-button>
+        <el-button  type="primary">提交</el-button>
       </div>
     </fill-tesk>
   </div>

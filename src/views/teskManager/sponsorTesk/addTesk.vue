@@ -84,7 +84,7 @@
               </div>
             </el-col>
             <el-col :span="6">
-              <el-button type="primary" plain size="mini" class="small-padding" @click="chooseTarget(item)">指标选择</el-button>
+              <el-button type="primary" plain  class="small-padding" @click="chooseTarget(item)">指标选择</el-button>
             </el-col>
           </div>
         </el-col>

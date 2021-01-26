@@ -16,7 +16,7 @@ const port = process.env.port || process.env.npm_config_port || 80; // 端口
 module.exports = {
   // 部署生产环境和开发环境下的URL。 dev开发 pro生产
   // 默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上
-  // 例如 https://www.baidu.com/。如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。 
+  // 例如 https://www.baidu.com/。如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。
   // 1、修改vue.config.js中的publicPath属性  publicPath: process.env.NODE_ENV === "production" ? "/admin/" : "/admin/",
   // 2、修改router/ index.js，添加一行base属性  base: "/admin"
   // 3、修改layout/components/Navbar.vue中的location.href   location.href = this.$router.options.base + '/index';

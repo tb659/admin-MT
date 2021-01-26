@@ -11,13 +11,13 @@
     <container-header v-if="!addTeskVisible">
       <el-form slot="left" :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
         <el-form-item label="任务名称" prop="userName">
-          <el-input v-model="queryParams.userName" placeholder="请输入任务名称" clearable size="small" class="w240 mr20" @keyup.enter.native="handleQuery" />
-          <el-button type="primary" icon="el-icon-search" size="small" @click="handleQuery">{{ $t('query') }}</el-button>
+          <el-input v-model="queryParams.userName" placeholder="请输入任务名称" clearable  class="w240 mr20" @keyup.enter.native="handleQuery" />
+          <el-button type="primary" icon="el-icon-search"  @click="handleQuery">{{ $t('query') }}</el-button>
         </el-form-item>
       </el-form>
       <div slot="right">
-        <el-button type="success" plain icon="el-icon-plus" size="small" @click="handleAdd" v-hasPermi="['system:user:add']">创建任务</el-button>
-        <el-button type="danger" plain icon="el-icon-delete" size="small" :disabled="multiple" @click="handleDelete" v-hasPermi="['system:user:remove']">删除任务</el-button>
+        <el-button type="success" plain icon="el-icon-plus"  @click="handleAdd" v-hasPermi="['system:user:add']">创建任务</el-button>
+        <el-button type="danger" plain icon="el-icon-delete"  :disabled="multiple" @click="handleDelete" v-hasPermi="['system:user:remove']">删除任务</el-button>
       </div>
     </container-header>
 
@@ -48,8 +48,8 @@
             </el-table-column>
             <el-table-column :label="$t('handle')" width="100">
               <template slot-scope="scope">
-                <el-button size="mini" type="text" @click="handleStatusChange(scope.row)" v-hasPermi="['system:user:edit']">启用</el-button>
-                <el-button size="mini" type="text" @click="handleStatusChange(scope.row)" v-hasPermi="['system:user:resetPwd']">暂停</el-button>
+                <el-button  type="text" @click="handleStatusChange(scope.row)" v-hasPermi="['system:user:edit']">启用</el-button>
+                <el-button  type="text" @click="handleStatusChange(scope.row)" v-hasPermi="['system:user:resetPwd']">暂停</el-button>
               </template>
             </el-table-column>
           </el-table>

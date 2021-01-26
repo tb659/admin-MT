@@ -1,7 +1,10 @@
 <template>
   <div :class="classObj" class="app-wrapper" :style="{ '--current-color': theme }">
+    <!-- 移动端遮罩 -->
     <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
+    <!-- 左侧菜单 -->
     <sidebar class="sidebar-container" :style="{ backgroundColor: sideTheme === 'theme-dark' ? variables.menuBg : variables.menuLightBg }" />
+    <!-- 右侧主体 -->
     <div :class="{ hasTagsView: needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar />
@@ -25,11 +28,11 @@ import variables from '@/assets/styles/variables.scss'
 export default {
   name: 'Layout',
   components: {
-    AppMain,
+    AppMain, // 主体
     Navbar, // 头部导航条
-    RightPanel,
+    RightPanel, // 右侧工具栏
     Settings, // 布局设置
-    Sidebar,
+    Sidebar, // 菜单
     TagsView // tab页签
   },
   mixins: [ResizeMixin],
@@ -57,6 +60,7 @@ export default {
   },
   methods: {
     handleClickOutside() {
+      console.log(this.$store)
       this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
     }
   }
@@ -64,10 +68,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .app-wrapper {
   @include clearfix;
-  background-color:$containerBg;
+  background-color: $containerBg;
 
   &.mobile.openSidebar {
     position: fixed;

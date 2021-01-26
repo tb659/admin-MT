@@ -29,42 +29,42 @@
                   <el-row :gutter="20">
                     <el-col :lg="8" :md="12">
                       <el-form-item label="所监管企业资产总额-总计（亿元）">
-                        <el-input size="small" v-model="props.row.money1"></el-input>
+                        <el-input  v-model="props.row.money1"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :lg="8" :md="12">
                       <el-form-item label="所监管企业资产总额-工商类（亿元）">
-                        <el-input size="small" v-model="props.row.money2"></el-input>
+                        <el-input  v-model="props.row.money2"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :lg="8" :md="12">
                       <el-form-item label="所监管企业资产总额-金融类（亿元）">
-                        <el-input size="small" v-model="props.row.money3"></el-input>
+                        <el-input  v-model="props.row.money3"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :lg="8" :md="12">
                       <el-form-item label="所监管企业资产总额-文化类（亿元）">
-                        <el-input size="small" v-model="props.row.money4"></el-input>
+                        <el-input  v-model="props.row.money4"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :lg="8" :md="12">
                       <el-form-item label="省级各类国有企业资产总额（亿元）">
-                        <el-input size="small" v-model="props.row.money5"></el-input>
+                        <el-input  v-model="props.row.money5"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :lg="8" :md="12">
                       <el-form-item label="所监管企业资产总额占各类国有企业资产总额的比例（%）">
-                        <el-input size="small" v-model="props.row.percent1"></el-input>
+                        <el-input  v-model="props.row.percent1"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :lg="8" :md="12">
                       <el-form-item label="省级工商类国有资产总额（亿元）">
-                        <el-input size="small" v-model="props.row.money6"></el-input>
+                        <el-input  v-model="props.row.money6"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :lg="8" :md="12">
                       <el-form-item label="所监管工商类企业资产总额占各类国有企业资产总额的比例（%）">
-                        <el-input size="small" v-model="props.row.percent2"></el-input>
+                        <el-input  v-model="props.row.percent2"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-form-item label="附件（提供文本）" class="upload">

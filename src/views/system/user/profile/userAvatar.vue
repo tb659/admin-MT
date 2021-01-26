@@ -26,26 +26,26 @@
       <el-row>
         <el-col :lg="2" :md="2">
           <el-upload action="#" :http-request="requestUpload" :show-file-list="false" :before-upload="beforeUpload">
-            <el-button size="small">
+            <el-button >
               选择
               <i class="el-icon-upload el-icon--right"></i>
             </el-button>
           </el-upload>
         </el-col>
         <el-col :lg="{ span: 1, offset: 2 }" :md="2">
-          <el-button icon="el-icon-plus" size="small" @click="changeScale(1)"></el-button>
+          <el-button icon="el-icon-plus"  @click="changeScale(1)"></el-button>
         </el-col>
         <el-col :lg="{ span: 1, offset: 1 }" :md="2">
-          <el-button icon="el-icon-minus" size="small" @click="changeScale(-1)"></el-button>
+          <el-button icon="el-icon-minus"  @click="changeScale(-1)"></el-button>
         </el-col>
         <el-col :lg="{ span: 1, offset: 1 }" :md="2">
-          <el-button icon="el-icon-refresh-left" size="small" @click="rotateLeft()"></el-button>
+          <el-button icon="el-icon-refresh-left"  @click="rotateLeft()"></el-button>
         </el-col>
         <el-col :lg="{ span: 1, offset: 1 }" :md="2">
-          <el-button icon="el-icon-refresh-right" size="small" @click="rotateRight()"></el-button>
+          <el-button icon="el-icon-refresh-right"  @click="rotateRight()"></el-button>
         </el-col>
         <el-col :lg="{ span: 2, offset: 6 }" :md="2">
-          <el-button type="primary" size="small" @click="uploadImg()">提 交</el-button>
+          <el-button type="primary"  @click="uploadImg()">提 交</el-button>
         </el-col>
       </el-row>
     </el-dialog>

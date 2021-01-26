@@ -22,7 +22,7 @@ t.choose = '请选择'
 
 t.prompt = {}
 t.prompt.title = '提示'
-t.prompt.info = '确定进行“{handle}”操作?'
+t.prompt.info = '确定进行“{handle}”操作吗?'
 t.prompt.success = '操作成功'
 t.prompt.failed = '操作失败'
 t.prompt.deleteBatch = '请选择删除项'
@@ -42,6 +42,7 @@ t.login.title = '登录'
 t.login.username = '用户名'
 t.login.password = '密码'
 t.login.captcha = '验证码'
+t.login.logOut = '退出'
 
 
 export default t

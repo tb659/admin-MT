@@ -27,7 +27,7 @@
       </el-col>
     </el-row>
     <div slot="footer" class="dialog-footer">
-      <el-button size="mini" class="confirmBtn small-padding" type="primary" @click="submitForm">{{ $t('confirm') }}</el-button>
+      <el-button  class="confirmBtn small-padding" type="primary" @click="submitForm">{{ $t('confirm') }}</el-button>
     </div>
   </el-dialog>
 </template>
