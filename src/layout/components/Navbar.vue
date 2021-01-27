@@ -1,9 +1,10 @@
 <template>
   <div class="navbar">
+    <!-- 展开收缩菜单栏图标 -->
     <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
+    <!-- 面包屑 -->
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
-
+    <!-- 右侧操作栏 -->
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
         <!-- 快速搜索 -->
@@ -15,7 +16,7 @@
           <size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
       </template>
-
+      <!-- 下拉菜单 -->
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
           <img :src="avatar" class="user-avatar" />
@@ -47,11 +48,11 @@ import Search from '@/components/HeaderSearch'
 
 export default {
   components: {
-    Breadcrumb,
-    Hamburger,
-    Screenfull,
-    SizeSelect,
-    Search
+    Breadcrumb, // 面包屑
+    Hamburger, // 菜单伸缩按钮
+    Screenfull, // 全屏
+    SizeSelect, // 尺寸大小
+    Search // 头部搜索
   },
   computed: {
     ...mapGetters(['sidebar', 'avatar', 'device']),
@@ -72,7 +73,7 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      this.$confirm(this.$t('prompt.info', { 'handle': this.$t('login.logOut') }), `${this.$t('prompt.title')}`, {
+      this.$confirm(this.$t('prompt.info', { handle: this.$t('login.logOut') }), `${this.$t('prompt.title')}`, {
         confirmButtonText: this.$t('confirm'),
         cancelButtonText: this.$t('cancel'),
         type: 'warning'

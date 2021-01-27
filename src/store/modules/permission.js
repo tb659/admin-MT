@@ -5,15 +5,16 @@ import ParentView from '@/components/ParentView'
 
 const permission = {
   state: {
-    routes: [],
-    addRoutes: [],
-    sidebarRouters: []
+    routes: [], // 平级路由 包含 *
+    addRoutes: [],  // 动态路由
+    sidebarRouters: [] // 平级路由 不含 *
   },
   mutations: {
     SET_ROUTES: (state, routes) => {
       state.addRoutes = routes
       state.routes = constantRoutes.concat(routes)
     },
+    // 包含*路由
     SET_SIDEBAR_ROUTERS: (state, routers) => {
       state.sidebarRouters = constantRoutes.concat(routers)
     }
@@ -23,120 +24,119 @@ const permission = {
     GenerateRoutes({ commit }) {
       return new Promise(resolve => {
         // 向后端请求路由数据
-        // getRouters().then(res => {
-        console.log('----------------------------------------向后端请求路由数据')
-        let res = {
-          msg: '操作成功',
-          code: 200,
-          data: [
-            {
-              name: 'DataFill',
-              path: '/dataFill',
-              hidden: false,
-              redirect: 'noRedirect',
-              component: 'Layout',
-              alwaysShow: true,
-              meta: { title: '数据填报', icon: 'date', noCache: false },
-              children: [
-                {
-                  name: 'MyTest',
-                  path: 'myTest',
-                  hidden: false,
-                  component: 'dataFill/myTest/index',
-                  meta: { title: '我的任务', icon: 'user', noCache: false }
-                }
-              ]
-            },
-            {
-              name: 'TeskManager',
-              path: '/teskManager',
-              hidden: false,
-              redirect: 'noRedirect',
-              component: 'Layout',
-              alwaysShow: true,
-              meta: { title: '任务管理', icon: 'date', noCache: false },
-              children: [
-                {
-                  name: 'SponsorTesk',
-                  path: 'sponsorTesk',
-                  hidden: false,
-                  component: 'teskManager/sponsorTesk/index',
-                  meta: { title: '发起任务', icon: 'user', noCache: false }
-                },
-                {
-                  name: 'CollectAudit',
-                  path: 'collectAudit',
-                  hidden: false,
-                  component: 'teskManager/collectAudit/index',
-                  meta: { title: '汇总审核', icon: 'user', noCache: false }
-                }
-              ]
-            },
-            {
-              name: 'ReportAudit',
-              path: '/reportAudit',
-              hidden: false,
-              redirect: 'noRedirect',
-              component: 'Layout',
-              alwaysShow: true,
-              meta: { title: '提报审核', icon: 'date', noCache: false },
-              children: [
-                {
-                  name: 'Index',
-                  path: 'index',
-                  hidden: false,
-                  component: 'reportAudit/reportAudit/index',
-                  meta: { title: '提报审核', icon: 'user', noCache: false }
-                }
-              ]
-            },
-            {
-              name: 'System',
-              path: '/system',
-              hidden: false,
-              redirect: 'noRedirect',
-              component: 'Layout',
-              alwaysShow: true,
-              meta: { title: '系统管理', icon: 'system', noCache: false },
-              children: [
-                {
-                  name: 'User',
-                  path: 'user',
-                  hidden: false,
-                  component: 'system/user/index',
-                  meta: { title: '用户管理', icon: 'user', noCache: false }
-                }
-              ]
-            },
-            {
-              name: 'StatisticalStatement',
-              path: '/statisticalStatement',
-              hidden: false,
-              redirect: 'noRedirect',
-              component: 'Layout',
-              alwaysShow: true,
-              meta: { title: '统计报表', icon: 'date', noCache: false },
-              children: [
-                {
-                  name: 'Index',
-                  path: 'index',
-                  hidden: false,
-                  component: 'statisticalStatement/statisticalStatement/index',
-                  meta: { title: '统计报表', icon: 'user', noCache: false }
-                }
-              ]
-            }
-          ]
-        }
-        const sdata = JSON.parse(JSON.stringify(res.data))
-        const rdata = JSON.parse(JSON.stringify(res.data))
-        const sidebarRoutes = filterAsyncRouter(sdata)
-        const rewriteRoutes = filterAsyncRouter(rdata, true)
-        rewriteRoutes.push({ path: '*', redirect: '/404', hidden: true })
-        commit('SET_ROUTES', rewriteRoutes)
-        commit('SET_SIDEBAR_ROUTERS', sidebarRoutes)
-        resolve(rewriteRoutes)
-        // })
+        getRouters().then(res => {
+          res = {
+            msg: '操作成功',
+            code: 200,
+            data: [
+              {
+                name: 'DataFill',
+                path: '/dataFill',
+                hidden: false,
+                redirect: 'noRedirect',
+                component: 'Layout',
+                alwaysShow: true,
+                meta: { title: '数据填报', icon: 'date', noCache: false },
+                children: [
+                  {
+                    name: 'MyTest',
+                    path: 'myTest',
+                    hidden: false,
+                    component: 'dataFill/myTest/index',
+                    meta: { title: '我的任务', icon: 'user', noCache: false }
+                  }
+                ]
+              },
+              {
+                name: 'TeskManager',
+                path: '/teskManager',
+                hidden: false,
+                redirect: 'noRedirect',
+                component: 'Layout',
+                alwaysShow: true,
+                meta: { title: '任务管理', icon: 'date', noCache: false },
+                children: [
+                  {
+                    name: 'SponsorTesk',
+                    path: 'sponsorTesk',
+                    hidden: false,
+                    component: 'teskManager/sponsorTesk/index',
+                    meta: { title: '发起任务', icon: 'user', noCache: false }
+                  },
+                  {
+                    name: 'CollectAudit',
+                    path: 'collectAudit',
+                    hidden: false,
+                    component: 'teskManager/collectAudit/index',
+                    meta: { title: '汇总审核', icon: 'user', noCache: false }
+                  }
+                ]
+              },
+              {
+                name: 'ReportAudit',
+                path: '/reportAudit',
+                hidden: false,
+                redirect: 'noRedirect',
+                component: 'Layout',
+                alwaysShow: true,
+                meta: { title: '提报审核', icon: 'date', noCache: false },
+                children: [
+                  {
+                    name: 'Index',
+                    path: 'index',
+                    hidden: false,
+                    component: 'reportAudit/reportAudit/index',
+                    meta: { title: '提报审核', icon: 'user', noCache: false }
+                  }
+                ]
+              },
+              {
+                name: 'System',
+                path: '/system',
+                hidden: false,
+                redirect: 'noRedirect',
+                component: 'Layout',
+                alwaysShow: true,
+                meta: { title: '系统管理', icon: 'system', noCache: false },
+                children: [
+                  {
+                    name: 'User',
+                    path: 'user',
+                    hidden: false,
+                    component: 'system/user/index',
+                    meta: { title: '用户管理', icon: 'user', noCache: false }
+                  }
+                ]
+              },
+              {
+                name: 'StatisticalStatement',
+                path: '/statisticalStatement',
+                hidden: false,
+                redirect: 'noRedirect',
+                component: 'Layout',
+                alwaysShow: true,
+                meta: { title: '统计报表', icon: 'date', noCache: false },
+                children: [
+                  {
+                    name: 'Index',
+                    path: 'index',
+                    hidden: false,
+                    component: 'statisticalStatement/statisticalStatement/index',
+                    meta: { title: '统计报表', icon: 'user', noCache: false }
+                  }
+                ]
+              }
+            ]
+          }
+          const sdata = JSON.parse(JSON.stringify(res.data))
+          const rdata = JSON.parse(JSON.stringify(res.data))
+          const sidebarRoutes = filterAsyncRouter(sdata)
+          const rewriteRoutes = filterAsyncRouter(rdata, true)
+          rewriteRoutes.push({ path: '*', redirect: '/404', hidden: true })
+          commit('SET_ROUTES', rewriteRoutes)
+          commit('SET_SIDEBAR_ROUTERS', sidebarRoutes)
+          resolve(rewriteRoutes)
+        })
       })
     }
   }
@@ -145,8 +145,11 @@ const permission = {
 // 遍历后台传来的路由字符串，转换为组件对象
 function filterAsyncRouter(asyncRouterMap, isRewrite = false) {
   return asyncRouterMap.filter(route => {
-    if (isRewrite && route.children) {
+    if (route.children && isRewrite) {
       route.children = filterChildren(route.children)
+    }
+    if (route.children !== null && route.children && route.children.length) {
+      route.children = filterAsyncRouter(route.children, route, isRewrite)
     }
     if (route.component) {
       // Layout ParentView 组件特殊处理
@@ -157,9 +160,6 @@ function filterAsyncRouter(asyncRouterMap, isRewrite = false) {
       } else {
         route.component = loadView(route.component)
       }
-    }
-    if (route.children != null && route.children && route.children.length) {
-      route.children = filterAsyncRouter(route.children, route, isRewrite)
     }
     return true
   })

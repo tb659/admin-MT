@@ -2,9 +2,9 @@
  * @Author: tb659
  * @Date: 2021-01-23 20:30:17
  * @LastEditors: tb659
- * @LastEditTime: 2021-01-24 11:11:50
- * @Description: 页面主题头部
- * @FilePath: \datacollectandsubmit\src\components\ContainerHeader\index.vue
+ * @LastEditTime: 2021-01-27 22:03:40
+ * @Description: 页面主体头部
+ * @FilePath: \admin-MT\src\components\ContainerHeader\index.vue
 -->
 <template>
   <el-row :gutter="24" class="containerHeader">
@@ -24,12 +24,12 @@ export default {
   props: {
     left: {
       type: Number,
-      default: 12 
+      default: 12
     },
     right: {
       type: Number,
-      default: 12 
-    },
+      default: 12
+    }
   },
   data() {
     return {}
@@ -57,12 +57,5 @@ export default {
     @include flexbox;
     @include flex-just(flex-end);
   }
-}
-
-h3 {
-  font-size: 20px;
-  font-family: Microsoft YaHei;
-  font-weight: bold;
-  color: #3f3f41;
 }
 </style>

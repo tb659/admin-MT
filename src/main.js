@@ -21,13 +21,13 @@ import Pagination from '@/components/Pagination'
 import RightToolbar from '@/components/RightToolbar'
 
 // 全局方法挂载
-Vue.prototype.parseTime = parseTime
-Vue.prototype.resetForm = resetForm
-Vue.prototype.addDateRange = addDateRange
-Vue.prototype.selectDictLabel = selectDictLabel
-Vue.prototype.selectDictLabels = selectDictLabels
-Vue.prototype.download = download
-Vue.prototype.handleTree = handleTree
+Vue.prototype.parseTime = parseTime // 格式化时间
+Vue.prototype.resetForm = resetForm // 表单重置
+Vue.prototype.addDateRange = addDateRange // 添加日期范围
+Vue.prototype.selectDictLabel = selectDictLabel // 
+Vue.prototype.selectDictLabels = selectDictLabels // 回显数据字典
+Vue.prototype.download = download // 通用下载方法
+Vue.prototype.handleTree = handleTree // 构造树型结构数据
 
 Vue.prototype.msgSuccess = function(msg, cb) {
   this.$message({
@@ -48,8 +48,8 @@ Vue.prototype.msgInfo = function(msg) {
 }
 
 // 全局组件挂载
-Vue.component('Pagination', Pagination)
-Vue.component('RightToolbar', RightToolbar)
+Vue.component('Pagination', Pagination) // 分页
+Vue.component('RightToolbar', RightToolbar) // 表格工具栏
 
 Vue.use(permission)
 
