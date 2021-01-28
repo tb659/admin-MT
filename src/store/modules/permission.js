@@ -105,6 +105,13 @@ const permission = {
                     hidden: false,
                     component: 'system/user/index',
                     meta: { title: '用户管理', icon: 'user', noCache: false }
+                  },
+                  {
+                    name: 'Menu',
+                    path: 'menu',
+                    hidden: false,
+                    component: 'system/menu/index',
+                    meta: { title: '菜单管理', icon: 'tree-table', noCache: false }
                   }
                 ]
               },

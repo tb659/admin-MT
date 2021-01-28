@@ -1,7 +1,6 @@
 <template>
-  <div class="app-container">
-    个人中心
-    <!-- <el-row :gutter="20">
+  <div class="app-container p20">
+    <el-row :gutter="20">
       <el-col :span="6" :xs="24">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
@@ -55,7 +54,7 @@
           </el-tabs>
         </el-card>
       </el-col>
-    </el-row> -->
+    </el-row>
   </div>
 </template>
 
@@ -82,7 +81,7 @@ export default {
   methods: {
     getUser() {
       // getUserProfile().then(response => {
-        console.log('------------------------------------------------查询用户个人信息')
+      console.log('------------------------------------------------查询用户个人信息')
       let response = {
         msg: '操作成功',
         postGroup: '董事长',

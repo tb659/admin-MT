@@ -7,16 +7,7 @@ export function isExternal(path) {
 }
 
 /**
- * @param {string} str
- * @returns {Boolean}
- */
-export function validUsername(str) {
-  const valid_map = ['admin', 'editor']
-  return valid_map.indexOf(str.trim()) >= 0
-}
-
-/**
- * @param {string} url
+ * @param {string} url 网址
  * @returns {Boolean}
  */
 export function validURL(url) {
@@ -28,13 +19,22 @@ export function validURL(url) {
  * @param {string} str
  * @returns {Boolean}
  */
+export function validUsername(str) {
+  const valid_map = ['admin', 'editor']
+  return valid_map.indexOf(str.trim()) >= 0
+}
+
+/**
+ * @param {string} str 小写字母
+ * @returns {Boolean}
+ */
 export function validLowerCase(str) {
   const reg = /^[a-z]+$/
   return reg.test(str)
 }
 
 /**
- * @param {string} str
+ * @param {string} str 大写字母
  * @returns {Boolean}
  */
 export function validUpperCase(str) {
@@ -43,7 +43,7 @@ export function validUpperCase(str) {
 }
 
 /**
- * @param {string} str
+ * @param {string} str 大小写字母
  * @returns {Boolean}
  */
 export function validAlphabets(str) {
@@ -52,7 +52,34 @@ export function validAlphabets(str) {
 }
 
 /**
- * @param {string} email
+ * @param {string} str 纯汉字
+ * @returns {Boolean}
+ */
+export function validCNAStr(str) {
+  const reg = /^[\u4e00-\u9fa5]+$/
+  return reg.test(str)
+}
+
+/**
+ * @param {string} str 身份证
+ * @returns {Boolean}
+ */
+export function validIdCard(str) {
+  const reg = /(^\d{15}$)|(^\d{17}([0-9]|X)$)/
+  return reg.test(str)
+}
+
+/**
+ * @param {string} str 手机号
+ * @returns {Boolean}
+ */
+export function validMobile(str) {
+  const reg = /^[1][0-9]{10}$/
+  return reg.test(str)
+}
+
+/**
+ * @param {string} email 邮箱
  * @returns {Boolean}
  */
 export function validEmail(email) {
@@ -61,7 +88,7 @@ export function validEmail(email) {
 }
 
 /**
- * @param {string} str
+ * @param {string} str 字符串
  * @returns {Boolean}
  */
 export function isString(str) {
@@ -72,7 +99,7 @@ export function isString(str) {
 }
 
 /**
- * @param {Array} arg
+ * @param {Array} arg 数组
  * @returns {Boolean}
  */
 export function isArray(arg) {

@@ -1,11 +1,3 @@
-<!--
- * @Author: tb659
- * @Date: 2021-01-23 12:45:34
- * @LastEditors: tb659
- * @LastEditTime: 2021-01-23 12:45:56
- * @Description: 
- * @FilePath: \datacollectandsubmit\src\views\system\user\profile\userInfo.vue
--->
 <template>
   <el-form ref="form" :model="user" :rules="rules" label-width="80px">
     <el-form-item label="用户昵称" prop="nickName">
@@ -24,8 +16,8 @@
       </el-radio-group>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary"  @click="submit">保存</el-button>
-      <el-button type="danger"  @click="close">关闭</el-button>
+      <el-button type="primary" @click="submit">保存</el-button>
+      <el-button type="danger" @click="close">关闭</el-button>
     </el-form-item>
   </el-form>
 </template>
