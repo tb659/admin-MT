@@ -62,7 +62,7 @@ export default {
 
     getList() {
       this.dataListLoading = true
-      // listUser(this.addDateRange(this.queryParams, this.dateRange)).then(res => {
+      // listUser(this.$utils.addDateRange(this.queryParams, this.dateRange)).then(res => {
       console.log('---------------------------------查询指标列表')
       let res = {
         total: 4,

@@ -17,7 +17,7 @@ export function login(username, password, code, uuid) {
     //   // 可以自定义 Authorization
     //   // 'Authorization': 'Basic d2ViOg=='
     // },
-    // baseURL: process.env.BASE_API // 覆盖 不同的baseURL
+    // baseURL: process.env.VUE_APP_BASE_API // 覆盖 不同的baseURL
   });
 }
 

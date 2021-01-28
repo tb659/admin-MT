@@ -50,15 +50,22 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: resolve => require(['@/views/index'], resolve),
         name: '首页',
+        component: resolve => require(['@/views/index'], resolve),
         meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true }
-      },
+      }
+    ]
+  },
+  {
+    path: '',
+    component: Layout,
+    redirect: 'norediract',
+    children: [
       {
         path: 'test',
-        component: resolve => require(['@/views/system/test/index'], resolve),
-        name: '测试',
-        meta: { title: '测试', icon: 'dashboard', noCache: true }
+        name: 'Test',
+        component: resolve => require(['@/views/test'], resolve),
+        meta: { title: '测试', icon: 'dashboard', noCache: true, affix: true }
       }
     ]
   },
@@ -70,21 +77,21 @@ export const constantRoutes = [
     children: [
       {
         path: 'profile',
-        component: resolve => require(['@/views/system/user/profile/index'], resolve),
         name: 'Profile',
+        component: resolve => require(['@/views/system/user/profile/index'], resolve),
         meta: { title: '个人中心', icon: 'user' }
       }
     ]
   },
   {
     path: '/401',
-    component: resolve => require(['@/views/error/401'], resolve),
-    hidden: true
+    hidden: true,
+    component: resolve => require(['@/views/error/401'], resolve)
   },
   {
     path: '/404',
-    component: resolve => require(['@/views/error/404'], resolve),
-    hidden: true
+    hidden: true,
+    component: resolve => require(['@/views/error/404'], resolve)
   }
 ]
 

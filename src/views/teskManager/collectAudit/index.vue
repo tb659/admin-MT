@@ -157,7 +157,7 @@ export default {
     /** 查询任务列表 */
     getList() {
       this.dataListLoading = true
-      // listUser(this.addDateRange(this.queryParams, this.dateRange)).then(res => {
+      // listUser(this.$utils.addDateRange(this.queryParams, this.dateRange)).then(res => {
       console.log('---------------------------------查询任务列表')
       let res = {
         total: 4,

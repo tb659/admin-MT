@@ -35,7 +35,7 @@
       <el-table-column prop="status" label="状态" :formatter="statusFormat" width="80"></el-table-column>
       <el-table-column label="创建时间" align="center" prop="createTime">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
+          <span>{{ $utils.parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -201,7 +201,7 @@ export default {
     getList() {
       this.loading = true
       listMenu(this.queryParams).then(response => {
-        this.menuList = this.handleTree(response.data, 'menuId')
+        this.menuList = this.$utils.handleTree(response.data, 'menuId')
         this.loading = false
       })
     },
@@ -221,7 +221,7 @@ export default {
       listMenu().then(response => {
         this.menuOptions = []
         const menu = { menuId: 0, menuName: '主类目', children: [] }
-        menu.children = this.handleTree(response.data, 'menuId')
+        menu.children = this.$utils.handleTree(response.data, 'menuId')
         this.menuOptions.push(menu)
       })
     },
@@ -230,14 +230,14 @@ export default {
       if (row.menuType == 'F') {
         return ''
       }
-      return this.selectDictLabel(this.visibleOptions, row.visible)
+      return this.$utils.selectDictLabel(this.visibleOptions, row.visible)
     },
     // 菜单状态字典翻译
     statusFormat(row, column) {
       if (row.menuType == 'F') {
         return ''
       }
-      return this.selectDictLabel(this.statusOptions, row.status)
+      return this.$utils.selectDictLabel(this.statusOptions, row.status)
     },
     // 取消按钮
     cancel() {

@@ -47,7 +47,7 @@
               <el-button type="info" plain icon="el-icon-upload2" @click="handleImport" v-hasPermi="['system:user:import']">导入</el-button>
             </el-col>
             <el-col :span="1.5">
-              <el-button type="warning" plain icon="el-icon-download" @click="handleExport" v-hasPermi="['system:user:export']">导出</el-button>
+              <el-button type="warning" plain icon="el-icon-$utils.$utils.download" @click="handleExport" v-hasPermi="['system:user:export']">导出</el-button>
             </el-col>
             <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
           </el-row>
@@ -66,7 +66,7 @@
             </el-table-column>
             <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[6].visible" width="160">
               <template slot-scope="scope">
-                <span>{{ parseTime(scope.row.createTime) }}</span>
+                <span>{{ $utils.parseTime(scope.row.createTime) }}</span>
               </template>
             </el-table-column>
             <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">
@@ -324,7 +324,7 @@ export default {
     /** 查询用户列表 */
     getList() {
       this.loading = true
-      // listUser(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
+      // listUser(this.$utils.addDateRange(this.queryParams, this.dateRange)).then(response => {
       console.log('---------------------------------查询用户列表')
       let response = {
         total: 2,
@@ -589,7 +589,7 @@ export default {
           return exportUser(queryParams)
         })
         .then(response => {
-          this.download(response.msg)
+          this.$utils.$utils.download(response.msg)
         })
     },
     /** 导入按钮操作 */
@@ -600,7 +600,7 @@ export default {
     /** 下载模板操作 */
     importTemplate() {
       importTemplate().then(response => {
-        this.download(response.msg)
+        this.$utils.$utils.download(response.msg)
       })
     },
     // 文件上传中处理

@@ -43,7 +43,7 @@
             </el-table-column>
             <el-table-column label="发布时间" prop="issueDate" width="160">
               <template slot-scope="scope">
-                <span>{{ parseTime(scope.row.issueDate) }}</span>
+                <span>{{ $utils.parseTime(scope.row.issueDate) }}</span>
               </template>
             </el-table-column>
             <el-table-column :label="$t('handle')" width="100">

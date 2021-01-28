@@ -8,6 +8,9 @@ import './assets/styles/element-variables.scss'
 import i18n from '@/i18n'
 
 import '@/assets/styles/common.scss' // common css
+import styles from '@/assets/styles/index.scss'
+import * as utils from '@/utils'
+
 import App from './App'
 import store from './store'
 import router from './router'
@@ -16,20 +19,15 @@ import permission from './directive/permission'
 import './assets/icons' // icon
 import './permission' // permission control
 
-import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, download, handleTree } from '@/utils/util'
-
 import Pagination from '@/components/Pagination'
 // 自定义表格工具扩展
 import RightToolbar from '@/components/RightToolbar'
 
+// 全局主题挂载
+Vue.prototype.$styles = styles //  主题样式
+
 // 全局方法挂载
-Vue.prototype.parseTime = parseTime // 格式化时间
-Vue.prototype.resetForm = resetForm // 表单重置
-Vue.prototype.addDateRange = addDateRange // 添加日期范围
-Vue.prototype.selectDictLabel = selectDictLabel // 
-Vue.prototype.selectDictLabels = selectDictLabels // 回显数据字典
-Vue.prototype.download = download // 通用下载方法
-Vue.prototype.handleTree = handleTree // 构造树型结构数据
+Vue.prototype.$utils = utils // 工具方法
 
 Vue.prototype.msgSuccess = function(msg, cb) {
   this.$message({
