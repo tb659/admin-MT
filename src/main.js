@@ -2,6 +2,8 @@ import Vue from 'vue'
 
 import Cookies from 'js-cookie'
 
+import { debounce, throttle, cloneDeep } from 'lodash'
+
 import Element from 'element-ui'
 import './assets/styles/element-variables.scss'
 
@@ -9,6 +11,7 @@ import i18n from '@/i18n'
 
 import '@/assets/styles/common.scss' // common css
 import styles from '@/assets/styles/index.scss'
+
 import * as utils from '@/utils'
 
 import App from './App'
@@ -24,10 +27,17 @@ import Pagination from '@/components/Pagination'
 import RightToolbar from '@/components/RightToolbar'
 
 // 全局主题挂载
-Vue.prototype.$styles = styles //  主题样式
-
+Vue.prototype.$styles = styles
 // 全局方法挂载
-Vue.prototype.$utils = utils // 工具方法
+Vue.prototype.$utils = utils 
+// 全局时间方法挂载
+Vue.prototype.$formatDate = utils.formatDate
+// 全局重置表单挂载
+Vue.prototype.$resetForm = utils.resetForm
+
+Vue.prototype.$debounce = debounce
+Vue.prototype.$throttle = throttle
+Vue.prototype.$cloneDeep = cloneDeep
 
 Vue.prototype.msgSuccess = function(msg, cb) {
   this.$message({

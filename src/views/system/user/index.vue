@@ -66,7 +66,7 @@
             </el-table-column>
             <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[6].visible" width="160">
               <template slot-scope="scope">
-                <span>{{ $utils.parseTime(scope.row.createTime) }}</span>
+                <span>{{ $formatDate(scope.row.createTime) }}</span>
               </template>
             </el-table-column>
             <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">
@@ -481,7 +481,7 @@ export default {
         postIds: [],
         roleIds: []
       }
-      this.resetForm('form')
+      this.$resetForm('form')
     },
     /** 搜索按钮操作 */
     handleQuery() {
@@ -491,7 +491,7 @@ export default {
     /** 重置按钮操作 */
     resetQuery() {
       this.dateRange = []
-      this.resetForm('queryForm')
+      this.$resetForm('queryForm')
       this.handleQuery()
     },
     // 多选框选中数据

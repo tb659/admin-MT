@@ -2,9 +2,9 @@
  * @Author: tb659
  * @Date: 2021-01-23 14:07:12
  * @LastEditors: tb659
- * @LastEditTime: 2021-01-24 11:03:20
+ * @LastEditTime: 2021-01-29 14:04:47
  * @Description: 发起任务
- * @FilePath: \datacollectandsubmit\src\views\teskManager\sponsorTesk\index.vue
+ * @FilePath: \admin-MT\src\views\teskManager\sponsorTesk\index.vue
 -->
 <template>
   <div class="container">
@@ -43,7 +43,7 @@
             </el-table-column>
             <el-table-column label="发布时间" prop="issueDate" width="160">
               <template slot-scope="scope">
-                <span>{{ $utils.parseTime(scope.row.issueDate) }}</span>
+                <span>{{ $formatDate(scope.row.issueDate) }}</span>
               </template>
             </el-table-column>
             <el-table-column :label="$t('handle')" width="100">

@@ -35,7 +35,7 @@
       <el-table-column prop="status" label="状态" :formatter="statusFormat" width="80"></el-table-column>
       <el-table-column label="创建时间" align="center" prop="createTime">
         <template slot-scope="scope">
-          <span>{{ $utils.parseTime(scope.row.createTime) }}</span>
+          <span>{{ $formatDate(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -230,14 +230,14 @@ export default {
       if (row.menuType == 'F') {
         return ''
       }
-      return this.$utils.selectDictLabel(this.visibleOptions, row.visible)
+      // return this.$utils.selectDictLabel(this.visibleOptions, row.visible)
     },
     // 菜单状态字典翻译
     statusFormat(row, column) {
-      if (row.menuType == 'F') {
+      if (row.menuType === 'F') {
         return ''
       }
-      return this.$utils.selectDictLabel(this.statusOptions, row.status)
+      // return this.$utils.selectDictLabel(this.statusOptions, row.status)
     },
     // 取消按钮
     cancel() {
@@ -258,7 +258,7 @@ export default {
         visible: '0',
         status: '0'
       }
-      this.resetForm('form')
+      this.$resetForm('form')
     },
     /** 搜索按钮操作 */
     handleQuery() {
@@ -266,7 +266,7 @@ export default {
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm('queryForm')
+      this.$resetForm('queryForm')
       this.handleQuery()
     },
     /** 新增按钮操作 */
